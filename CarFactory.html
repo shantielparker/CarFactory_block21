@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Information</title>
+ <link rel="stylesheet" type="text/css" href="style.css">
+   <div>
+    <h1>Car Factory</h1>
+  <script src="index.js"></script>
+    <div id="carDescription" class="car-card"></div>
+  </div>
+</head>
+<body>
+  <div class="car-info">
+    <h1>Car Information</h1>
+    <div id="car-description"></div>
+  </div>
+   <div class="container">
+    <h1>Virtual Assembly Line</h1>
+    <div id="vehicleList"></div>
+  </div>
+
+
+  <script>
+    class Car {
+      constructor(make, model, year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+      }
+
+      getDescription() {
+        return `${this.year} ${this.make} ${this.model}`;
+      }
+    }
+
+    class ElectricCar extends Car {
+      constructor(make, model, year, range) {
+        super(make, model, year);
+        this.range = range;
+      }
+
+      getDescription() {
+        return `${super.getDescription()} - Range: ${this.range} miles`;
+      }
+    }
+
+    const myElectricCar = new ElectricCar("Tesla", "Model S", 2019, 300);
+    const carDescriptionElement = document.getElementById("carDescription");
+    carDescriptionElement.textContent = myElectricCar.getDescription();
+  </script>
+ 
+</div>
+
+<div>
+  <script>
+    // Vehicle classes and assembly line function code here
+
+    function displayVehicles() {
+      const vehicleListElement = document.getElementById("vehicleList");
+      const assemblyLineVehicles = assemblyLine();
+
+      assemblyLineVehicles.forEach(vehicle => {
+        const vehicleCardElement = document.createElement("div");
+        vehicleCardElement.classList.add("vehicle-card");
+        vehicleCardElement.textContent = vehicle.getDescription();
+        vehicleListElement.appendChild(vehicleCardElement);
+      });
+    }
+
+    displayVehicles();
+  </script>
+</div>
+</body>
+
+</html>
